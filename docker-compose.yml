@@ -1,0 +1,13 @@
+---
+version: '3.8'
+services:
+  app:
+    user: "1000"
+    build:
+      context: .
+      dockerfile: ./.devops/docker/Dockerfile
+    volumes:
+      - ./src:/app
+    stdin_open: true
+    tty: true
+
