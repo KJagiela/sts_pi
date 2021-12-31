@@ -13,8 +13,8 @@ speed_right = 0
 speed_left = 0
 
 
-@app.route('/hello')
-def hello():
+@app.route('/')
+def template():
     return render_template(
         'template.html',
         speed_right=speed_right,
