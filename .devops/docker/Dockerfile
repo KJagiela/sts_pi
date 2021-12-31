@@ -4,7 +4,8 @@ ARG USER_ID=1000
 
 ENV USER_ID=${USER_ID} \
   HOME=/home/sts \
-  PYTHONUNBUFFERED=1
+  PYTHONUNBUFFERED=1 \
+  FLASK_ENV=development
 
 RUN apt-get update -qq \
   && apt-get install -qq -y \
@@ -19,7 +20,7 @@ RUN apt-get update -qq \
 RUN addgroup --system --gid ${USER_ID} sts \
   && adduser --system --home ${HOME} --uid ${USER_ID} --ingroup sts sts
 
-CMD ["app.py"]
+CMD ["flask", "run", "--host=0.0.0.0"]
 
 WORKDIR /app
 

@@ -8,6 +8,8 @@ services:
       dockerfile: ./.devops/docker/Dockerfile
     volumes:
       - ./src:/app
+    ports:
+      - 5000:5000
     stdin_open: true
     tty: true
 

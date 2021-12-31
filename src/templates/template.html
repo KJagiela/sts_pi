@@ -1,0 +1,20 @@
+<html>
+  <body>
+    <div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" crossorigin="anonymous"></script>
+    <script>
+      function steer(ev) {
+        if (['ArrowUp', 'ArrowDown', 'ArrowRight', 'ArrowLeft'].includes(ev.key)) {
+          axios.post('/steer', {'pressed_key': ev.key}).then((response) => console.log(response.data.speed_right, response.data.speed_left))
+        }
+      }
+      $( document ).ready(function() {
+        window.addEventListener('keydown', function(ev) {
+            steer(ev);
+        });
+      });
+    </script>
+  </body>
+</html>
