@@ -3,7 +3,7 @@ import os
 from flask import Flask, render_template, jsonify, request
 from jinja2 import Template
 
-# import explorerhat as eh
+import explorerhat as eh
 
 app = Flask(__name__)
 
@@ -41,6 +41,17 @@ def steer():
         speed_left += 5
     speed_left = min(max(speed_left, -100), 100)
     speed_right = min(max(speed_right, -100), 100)
-    # eh.motor.one.speed(speed_right)
-    # eh.motor.two.speed(speed_left)
+    eh.motor.one.speed(speed_right)
+    eh.motor.two.speed(speed_left)
     return jsonify({'speed_right': speed_right, 'speed_left': speed_left})
+
+
+@app.route('/stop', methods=['GET'])
+def stop():
+    global speed_left
+    global speed_right
+    eh.motor.one.stop()
+    eh.motor.two.stop()
+    speed_left = 0
+    speed_right = 0
+    return jsonify({})
